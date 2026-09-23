@@ -1,7 +1,22 @@
 # weather
 
-a backend service handling concurrent connections and database transactions. it implements a clean architecture pattern to separate business logic from the routing layer. it ensures data integrity and high throughput.
+A real-time weather dashboard using OpenWeather API.
 
-Tech stack: nodejs, express, mongodb, postgresql, python, fastapi
+This application provides live weather updates utilizing Server-Sent Events (SSE). It caches API responses in Redis with a Time-To-Live (TTL) to prevent exceeding rate limits. The frontend is built with React and TypeScript.
 
-How to run: clone the repository, install backend dependencies, setup environment variables, and start the server.
+### Tech
+React, TypeScript, Express, Redis, OpenWeather API
+
+### Architecture
+```mermaid
+flowchart TD
+  Client -->|SSE| ExpressAPI
+  ExpressAPI --> RedisCache
+  RedisCache -->|Cache Miss| OpenWeather
+```
+
+### Getting started
+```bash
+npm install
+npm start
+```
